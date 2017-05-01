@@ -1,18 +1,30 @@
 {
   "name": "clickyclicky",
   "version": "1.0.0",
+  "stylelint": {
+    "extends": "stylelint-config-standard"
+  },
   "scripts": {
-    "dev:server": "live-server",
-    "dev:sass": "node-sass source/scss/styles.scss --watch --output=compiled/css --output-style=compressed --source-map=true",
-    "dev": "run-p dev:*",
+    "lint:html": "htmlhint *.html",
+    "lint:sass": "stylelint source/scss/*.scss --syntax scss",
+    "lint:js": "standard --fix *.js",
     "build:sass": "node-sass source/scss/styles.scss --output=compiled/css --output-style=compressed --source-map=true",
+    "build": "run-s lint:* build:sass",
+    "dev:server": "live-server",
+    "dev:sass-watch": "node-sass source/scss/styles.scss --watch --output=compiled/css --output-style=compressed --source-map=true",
+    "dev": "run-p dev:*",
+
     "deploy:surge": "surge --project . --domain clicky-project.surge.sh",
     "deploy": "run-s build:* deploy:surge"
   },
   "devDependencies": {
+    "htmlhint": "^0.9.13",
     "live-server": "^1.2.0",
     "node-sass": "^4.5.2",
     "npm-run-all": "^4.0.2",
+    "standard": "^10.0.2",
+    "stylelint": "^7.10.1",
+    "stylelint-config-standard": "^16.0.0",
     "surge": "^0.19.0"
   }
 }
