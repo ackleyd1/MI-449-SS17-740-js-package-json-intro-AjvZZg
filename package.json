@@ -13,9 +13,8 @@
     "dev:server": "live-server",
     "dev:sass-watch": "node-sass source/scss/styles.scss --watch --output=compiled/css --output-style=compressed --source-map=true",
     "dev": "run-p dev:*",
-
     "deploy:surge": "surge --project . --domain clicky-project.surge.sh",
-    "deploy": "run-s build:* deploy:surge"
+    "deploy": "run-s build deploy:surge"
   },
   "devDependencies": {
     "htmlhint": "^0.9.13",
